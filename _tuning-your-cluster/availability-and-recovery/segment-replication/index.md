@@ -112,7 +112,7 @@ When using segment replication, consider the following:
 1. Read-after-write guarantees: Segment replication does not currently support setting the refresh policy to `wait_for` or `true`. If you set the `refresh` query parameter to `wait_for` or `true` and then ingest documents, you'll get a response only after the primary node has refreshed and made those documents searchable. Replica shards will respond only after having written to their local translog. If real-time reads are needed, consider using the [`get`]({{site.url}}{{site.baseurl}}/api-reference/document-apis/get-documents/) or [`mget`]({{site.url}}{{site.baseurl}}/api-reference/document-apis/multi-get/) API operations. 
 1. As of OpenSearch 2.10, system indexes support segment replication. 
 1. Get, MultiGet, TermVector, and MultiTermVector requests serve strong reads by routing requests to the primary shards. Routing more requests to the primary shards may degrade performance as compared to distributing requests across primary and replica shards. To improve performance in read-heavy clusters, we recommend setting the `realtime` parameter in these requests to `false`. For more information, see [Issue #8700](https://github.com/opensearch-project/OpenSearch/issues/8700).
-1. Custom codecs do not work on 2.7.0 OpenSearch versionq. For more information, see [Issue #7781](https://github.com/opensearch-project/OpenSearch/issues/7781)
+1. Custom codecs do not work on 2.7.0 OpenSearch version for SEGMENT enabled indices. For more information, see [Issue #7781](https://github.com/opensearch-project/OpenSearch/issues/7781)
 
 ## Benchmarks
 
